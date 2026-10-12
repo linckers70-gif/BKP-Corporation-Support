@@ -1,187 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BKP Corporation | Suporte</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <title>Suporte - BKP Corporation</title>
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #080d18;
-    color: #f1f5f9;
-}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-.card {
-    width: 100%;
-    max-width: 520px;
-    padding: 35px;
-    background: #111a2b;
-    border: 1px solid #26344c;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 20px 60px #0005;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-.logo {
-    font-size: 34px;
-    font-weight: bold;
-    color: #60a5fa;
-    margin-bottom: 8px;
-}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #10131a;
+            color: #f1f5f9;
+            font-family: Arial, sans-serif;
+        }
 
-.subtitle {
-    color: #aab7ca;
-    line-height: 1.6;
-    margin-bottom: 28px;
-}
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            background: #1b202b;
+            border: 1px solid #303848;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px #0005;
+        }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 12px;
-}
+        h1 {
+            margin-top: 0;
+            color: #60a5fa;
+        }
 
-#captcha-area {
-    display: flex;
-    justify-content: center;
-    margin: 25px 0;
-}
+        p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
 
-#contact-area {
-    display: none;
-    margin-top: 25px;
-    padding-top: 22px;
-    border-top: 1px solid #334155;
-}
+        .captcha-area {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
 
-button, .email-link {
-    display: inline-block;
-    padding: 13px 18px;
-    border: 0;
-    border-radius: 9px;
-    background: #3b82f6;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    text-decoration: none;
-    cursor: pointer;
-}
+        #contato-suporte {
+            display: none;
+            margin-top: 25px;
+            padding: 18px;
+            background: #252e3d;
+            border-radius: 10px;
+        }
 
-button:hover, .email-link:hover {
-    background: #2563eb;
-}
+        .email-link {
+            color: #60a5fa;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+            text-decoration: underline;
+        }
 
-.notice {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #91a0b7;
-    line-height: 1.6;
-}
+        .email-link:hover {
+            color: #93c5fd;
+        }
 
-#error {
-    color: #fca5a5;
-    font-size: 14px;
-}
+        #mensagem {
+            margin-top: 15px;
+            color: #fca5a5;
+        }
 
-@media (max-width: 480px) {
-    .card {
-        padding: 24px 18px;
-    }
-}
-</style>
+        footer {
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
+    <main class="container">
+        <h1>BKP Corporation</h1>
 
-<main class="card">
-    <div class="logo">BKP CORPORATION</div>
+        <h2>Central de Suporte</h2>
 
-    <h1>Central de Suporte</h1>
+        <p>
+            Para visualizar nosso contato de suporte,
+            conclua a verificação abaixo.
+        </p>
 
-    <p class="subtitle">
-        Precisa de ajuda com nossos programas?
-        Complete a verificação para visualizar nosso contato.
-    </p>
-
-    <section id="verification">
-        <p>Confirme que você não é um robô:</p>
-
-        <div id="captcha-area">
-            <div class="g-recaptcha"
-                 data-sitekey="6LcJUewtAAAAABkq6K_ja7SACnMI2I3KYUlR72UN"
-                 data-callback="captchaValidado"
-                 data-expired-callback="captchaExpirado">
+        <div id="area-verificacao">
+            <div class="captcha-area">
+                <div
+                    class="g-recaptcha"
+                    data-sitekey="6LcJUewtAAAAABkq6K_ja7SACnMI2I3KYUlR72UN"
+                    data-callback="captchaValidado"
+                    data-expired-callback="captchaExpirado">
+                </div>
             </div>
         </div>
 
-        <p id="error"></p>
-    </section>
+        <p id="mensagem"></p>
 
-    <section id="contact-area">
-        <h2>Verificação concluída!</h2>
+        <div id="contato-suporte">
+            <h3>Verificação concluída!</h3>
 
-        <p>
-            Agora você pode entrar em contato com
-            a equipe da BKP Corporation.
-        </p>
+            <p>
+                Precisa de ajuda? Entre em contato com
+                o suporte da BKP Corporation pelo e-mail:
+            </p>
 
-<div id="contato-suporte" style="display: none;">
-    <p>Verificação concluída! Entre em contato com nosso suporte:</p>
+            <p>
+                📧
+                <a
+                    class="email-link"
+                    id="email-link"
+                    href="#">
+                </a>
+            </p>
+        </div>
 
-    <p>
-        📧 <a href="mailto:bkpcorporationsupport@gmail.com?subject=Suporte%20BKP%20Corporation">
-            bkpcorporationsupport@gmail.com
-        </a>
-    </p>
-</div>
+        <footer>
+            &copy; 2026 BKP Corporation. Todos os direitos reservados.
+        </footer>
+    </main>
 
-        <p class="notice">
-            Ao clicar, seu aplicativo de e-mail será aberto
-            para você escrever sua mensagem.
-        </p>
-    </section>
+    <script>
+        // COLOQUE SEU GMAIL AQUI:
+        const EMAIL_SUPORTE = "bkpcorporationsupport@gmail.com";
 
-    <p class="notice">
-        BKP Corporation © 2026
-    </p>
-</main>
+        function captchaValidado(token) {
+            if (!token) {
+                return;
+            }
 
-<script src="https://www.google.com/recaptcha/api.js"
-        async defer></script>
+            document.getElementById("area-verificacao").style.display = "none";
+            document.getElementById("mensagem").textContent = "";
+            document.getElementById("contato-suporte").style.display = "block";
 
-<script>
-const EMAIL_SUPORTE = "bkpcorporationsupport@gmail.com";
+            const link = document.getElementById("email-link");
 
-function captchaValidado(token) {
-    if (!token) return;
+            link.textContent = EMAIL_SUPORTE;
+            link.href =
+                "mailto:" + EMAIL_SUPORTE +
+                "?subject=Suporte%20BKP%20Corporation";
+        }
 
-    document.getElementById("verification").style.display = "none";
-    document.getElementById("contact-area").style.display = "block";
-
-    document.getElementById("email-text").textContent = EMAIL_SUPORTE;
-
-    document.querySelector(".email-link").href =
-        "mailto:" + EMAIL_SUPORTE +
-        "?subject=" + encodeURIComponent("Suporte BKP Corporation");
-}
-
-function captchaExpirado() {
-    document.getElementById("error").textContent =
-        "A verificação expirou. Faça o CAPTCHA novamente.";
-    document.getElementById("verification").style.display = "block";
-    document.getElementById("contact-area").style.display = "none";
-}
-</script>
-
+        function captchaExpirado() {
+            document.getElementById("mensagem").textContent =
+                "A verificação expirou. Faça a verificação novamente.";
+        }
+    </script>
 </body>
 </html>

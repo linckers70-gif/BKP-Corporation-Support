@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BKP Corporation | Suporte</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #080d18;
+    color: #f1f5f9;
+}
+
+.card {
+    width: 100%;
+    max-width: 520px;
+    padding: 35px;
+    background: #111a2b;
+    border: 1px solid #26344c;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 20px 60px #0005;
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: bold;
+    color: #60a5fa;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #aab7ca;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+#captcha-area {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+#contact-area {
+    display: none;
+    margin-top: 25px;
+    padding-top: 22px;
+    border-top: 1px solid #334155;
+}
+
+button, .email-link {
+    display: inline-block;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 9px;
+    background: #3b82f6;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover, .email-link:hover {
+    background: #2563eb;
+}
+
+.notice {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #91a0b7;
+    line-height: 1.6;
+}
+
+#error {
+    color: #fca5a5;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 24px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="card">
+    <div class="logo">BKP CORPORATION</div>
+
+    <h1>Central de Suporte</h1>
+
+    <p class="subtitle">
+        Precisa de ajuda com nossos programas?
+        Complete a verificação para visualizar nosso contato.
+    </p>
+
+    <section id="verification">
+        <p>Confirme que você não é um robô:</p>
+
+        <div id="captcha-area">
+            <div class="g-recaptcha"
+                 data-sitekey="SUA_CHAVE_PUBLICA_AQUI"
+                 data-callback="captchaValidado"
+                 data-expired-callback="captchaExpirado">
+            </div>
+        </div>
+
+        <p id="error"></p>
+    </section>
+
+    <section id="contact-area">
+        <h2>Verificação concluída!</h2>
+
+        <p>
+            Agora você pode entrar em contato com
+            a equipe da BKP Corporation.
+        </p>
+
+        <a class="email-link"
+           href="mailto:SEU_GMAIL_AQUI?subject=Suporte%20BKP%20Corporation">
+            <span id="email-text">Enviar e-mail ao suporte</span>
+        </a>
+
+        <p class="notice">
+            Ao clicar, seu aplicativo de e-mail será aberto
+            para você escrever sua mensagem.
+        </p>
+    </section>
+
+    <p class="notice">
+        BKP Corporation © 2026
+    </p>
+</main>
+
+<script src="https://www.google.com/recaptcha/api.js"
+        async defer></script>
+
+<script>
+const EMAIL_SUPORTE = "SEU_GMAIL_AQUI";
+
+function captchaValidado(token) {
+    if (!token) return;
+
+    document.getElementById("verification").style.display = "none";
+    document.getElementById("contact-area").style.display = "block";
+
+    document.getElementById("email-text").textContent = EMAIL_SUPORTE;
+
+    document.querySelector(".email-link").href =
+        "mailto:" + EMAIL_SUPORTE +
+        "?subject=" + encodeURIComponent("Suporte BKP Corporation");
+}
+
+function captchaExpirado() {
+    document.getElementById("error").textContent =
+        "A verificação expirou. Faça o CAPTCHA novamente.";
+    document.getElementById("verification").style.display = "block";
+    document.getElementById("contact-area").style.display = "none";
+}
+</script>
+
+</body>
+</html>
